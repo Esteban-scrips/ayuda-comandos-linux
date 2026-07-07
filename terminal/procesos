@@ -1,0 +1,10 @@
+Procesos
+Un proceso es un programa en ejecución.
+ps lista procesos,
+htop muestra CPU y memoria, 
+kill finaliza procesos utilizando su PID.
+
+Ejemplo:
+ps aux
+kill 1234
+kill -9 1234

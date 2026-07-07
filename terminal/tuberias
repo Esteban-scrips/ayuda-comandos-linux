@@ -1,0 +1,6 @@
+Tuberías
+Una tubería (|) envía la salida de un comando como entrada del siguiente, permitiendo combinar herramientas.
+
+Ejemplo:
+ps aux | grep firefox
+find /home -name '*.log' | sort | less

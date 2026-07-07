@@ -1,0 +1,29 @@
+convertir imagenes
+convert carpeta.jpg 1.png
+
+convertir imagenes al 30%
+convert carpeta.jpg -resize 30% 1.png
+
+ver foto
+fim 1.png
+
+ver grupo de fotos
+fim -a *.png
+
+convertir pdf a foto
+pdftoppm -png fotografia.pdf imagen
+
+eliminar secuencia de imagenes
+rm imagen*[0-84]*
+
+convertir pdf a txt
+pdftotext 'archivo'.pdf
+
+convertir imagen a imagen
+ffmpeg -i foto.jpg foto.png
+
+creador de dibujos formato ascii
+durdraw
+
+convertir imagen a formato ascii
+chafa foto.png > foto.ansi

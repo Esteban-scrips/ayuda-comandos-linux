@@ -1,0 +1,94 @@
+Manual: Formatear un Pendrive y Grabar una ISO Booteable
+desde Linux
+Este manual explica cómo identificar un pendrive USB, recrear su tabla de particiones usando fdisk y grabar una
+imagen ISO booteable utilizando dd desde la terminal Linux. También incluye la diferencia entre tablas GPT y MBR
+(DOS).
+
+1. Identificar el pendrive
+Conectá el pendrive y ejecutá:
+lsblk
+Ejemplo:
+sda
+931G
+■■sda1
+■■sda2
+sdb
+29G
+■■sdb1
+En este ejemplo el USB es /dev/sdb.
+IMPORTANTE:
+Verificar cuidadosamente el disco correcto.
+
+2. Desmontar el pendrive
+sudo umount /dev/sdb*
+
+3. Crear tabla GPT con fdisk
+sudo fdisk /dev/sdb
+Dentro de fdisk:
+g
+# crear tabla GPT
+n
+# nueva partición
+ENTER
+ENTER
+ENTER
+w
+# guardar cambios
+
+4. Crear tabla MBR / DOS (no GPT)
+Si necesitás compatibilidad BIOS antigua o querés evitar GPT:
+sudo fdisk /dev/sdb
+Dentro de fdisk:
+o
+n
+p
+1
+
+# crear tabla DOS/MBR
+# nueva partición
+# primaria
+# número de partición
+
+ENTER
+ENTER
+w
+# guardar cambios
+Esto crea una tabla MBR clásica.
+
+5. Grabar la ISO booteable con dd
+sudo dd if=archivo.iso of=/dev/sdb bs=4M status=progress oflag=sync
+Ejemplo:
+sudo dd if=debian.iso of=/dev/sdb bs=4M status=progress oflag=sync
+
+6. Sincronizar escritura
+sync
+
+7. Verificar el USB
+sudo fdisk -l /dev/sdb
+
+8. Explicación de parámetros
+if=archivo.iso
+of=/dev/sdb
+bs=4M
+status=progress
+oflag=sync
+
+-> imagen ISO
+-> disco USB completo
+-> tamaño de bloque
+-> muestra progreso
+-> fuerza sincronización
+
+9. Error común
+NO usar:
+of=/dev/sdb1
+Usar:
+of=/dev/sdb
+Las ISOs booteables deben escribirse al disco completo.
+
+10. Limpiar completamente el USB
+sudo wipefs -a /dev/sdb
+o:
+sudo dd if=/dev/zero of=/dev/sdb bs=10M count=10
+
+

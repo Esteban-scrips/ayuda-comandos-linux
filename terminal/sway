@@ -1,0 +1,4 @@
+﻿swaymsg -t get_outputs
+swaymsg output VGA-1 resolution 1280x720@60.000hz
+swaymsg output VGA-1 resolution 640x480@59.940hz
+

@@ -1,0 +1,1 @@
+ qemu-system-x86_64   -enable-kvm -device virtio-vga,xres=600,yres=400 -drive file=/dev/sde,format=raw,if=virtio -m 1024 -boot menu=on

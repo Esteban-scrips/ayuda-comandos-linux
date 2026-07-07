@@ -1,0 +1,5 @@
+Compresión
+Crear:
+tar -czvf respaldo.tar.gz carpeta/
+Extraer:
+tar -xzvf respaldo.tar.gz

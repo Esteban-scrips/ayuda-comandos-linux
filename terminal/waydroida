@@ -1,0 +1,2 @@
+﻿Compartir archivos con waydroid
+sudo bindfs --mirror=$(id -u) ~/.local/share/waydroid/data/media/0 /mnt/raid0/waydroid

@@ -1,0 +1,27 @@
+﻿ver ip local: 
+ifconfig
+
+ver ip de celular:
+sudo nmap  -sn 192.168.0.1/24
+
+conectar a ip de celular:
+adb connect 192.168.0.222:5555
+
+ver celular conectado por usb:
+adb devices
+
+abrir puerto de red en celular conectado por usb:
+adb tcpip 5555
+
+ver ip celular conectado por usb:
+adb shell ip route
+
+reiniciar conexión usb:
+adb usb
+
+verificar puerto abierto por usb:
+adb shell netstat -tln | grep 5555
+
+escritorio remoto pantalla apagada no hibernar:
+scrcpy --turn-screen-off --stay-awake
+ 

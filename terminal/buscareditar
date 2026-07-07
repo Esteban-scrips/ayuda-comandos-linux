@@ -1,0 +1,35 @@
+Busca archivos y directorios.
+
+-   Buscar por nombre:
+
+    find /home -name "archivo.txt"
+
+-   Ignorar mayúsculas:
+
+    find /home -iname "archivo.txt"
+
+-   Solo archivos:
+
+    find /home -type f -name "*.txt"
+
+-   Solo directorios:
+
+    find /home -type d -name "Documentos"
+
+
+Busca texto dentro de archivos.
+
+    grep "Linux" archivo.txt
+    grep -i "linux" archivo.txt
+    grep -n "Linux" archivo.txt
+    grep -r "TODO" .
+
+
+Edita y transforma texto.
+
+    sed 's/perro/gato/' archivo.txt
+    sed 's/perro/gato/g' archivo.txt
+    sed -i 's/perro/gato/g' archivo.txt
+    sed -n '5p' archivo.txt
+    sed '3d' archivo.txt
+

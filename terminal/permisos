@@ -1,0 +1,12 @@
+Permisos
+Linux controla el acceso mediante permisos para el propietario,
+el grupo y otros usuarios.
+Los permisos son lectura (r), escritura (w) y ejecución (x).
+
+ls -l muestra los permisos.
+chmod modifica permisos.
+chown cambia el propietario.
+
+Ejemplo:
+chmod 755 script.sh
+chown usuario:grupo archivo

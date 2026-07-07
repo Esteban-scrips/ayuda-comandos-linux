@@ -1,0 +1,118 @@
+ADB COMANDOS UTILES (CON EXPLICACION)
+
+============================== CONEXION Y DISPOSITIVOS
+============================== adb devices - Lista dispositivos
+conectados
+
+adb connect IP:PUERTO - Conecta por red (ej: 192.168.0.5:5555)
+
+adb tcpip 5555 - abre el puerto 
+
+adb pair IP:PUERTO - permiso de conexion por pin
+
+adb disconnect - Desconecta dispositivos por red
+
+adb kill-server adb start-server - Reinicia el servicio ADB
+
+============================== INSTALACION DE APPS
+============================== adb install app.apk - Instala una app
+adb install --streaming "ubicacion de app" - instalacion desde pc
+
+adb install -r app.apk - Reinstala sin borrar datos
+
+adb uninstall com.paquete.app - Desinstala una app
+
+adb shell pm list packages - Lista paquetes instalados
+
+============================== ABRIR Y LISTAR APLICACIONES
+============================== adb shell monkey -p com.paquete.app -c
+android.intent.category.LAUNCHER 1 - Abre una aplicación
+
+adb shell am start -n com.paquete/.MainActivity - Abre actividad
+específica
+
+adb shell pm list packages - Lista todas las apps
+
+adb shell pm list packages -3 - Solo apps instaladas por usuario
+
+adb shell pm list packages -s - Apps del sistema
+
+============================== ARCHIVOS ==============================
+adb push archivo /sdcard/ - Copia archivo al dispositivo
+
+adb pull /sdcard/archivo - Descarga archivo del dispositivo
+
+============================== SHELL Y SISTEMA
+============================== adb shell - Abre consola en Android
+
+adb reboot adb reboot bootloader adb reboot recovery - Reinicios en
+distintos modos
+adb -s 192.168.0.222:5555 shell - shell en remoto de un dispositivo
+
+adb shell getprop - Propiedades del sistema
+
+adb shell dumpsys - Info detallada del sistema
+
+============================== BATERIA ==============================
+adb shell dumpsys battery - Muestra estado completo de batería
+
+adb shell dumpsys battery | grep level - Nivel de batería
+
+adb shell dumpsys battery | grep status - Estado (charging, discharging,
+full)
+
+============================== LOGS Y DEBUG
+============================== adb logcat - Logs en tiempo real
+
+adb logcat -c - Limpia logs
+
+adb bugreport - Reporte completo del sistema
+
+============================== MULTIPLES DISPOSITIVOS
+============================== adb -s SERIAL shell - Ejecuta comando en
+dispositivo específico
+
+adb -s SERIAL install app.apk - Instala en un dispositivo específico
+
+============================== CONTROL DE PANTALLA Y BRILLO
+============================== adb shell settings put system
+screen_brightness_mode 0 - Desactiva brillo automático
+
+adb shell settings put system screen_brightness 50 - Ajusta brillo
+(0-255)
+
+============================== EMULACION DE BOTONES (KEYEVENT)
+============================== adb shell input keyevent 26 - Botón power
+
+adb shell input keyevent 3 - HOME
+
+adb shell input keyevent 4 - BACK
+
+adb shell input keyevent 82 - MENU
+
+adb shell input keyevent 24 - Volumen +
+
+adb shell input keyevent 25 - Volumen -
+
+============================== EMULACION TACTIL
+============================== adb shell input tap X Y - Toque en
+pantalla
+
+adb shell input swipe X1 Y1 X2 Y2 - Deslizamiento
+
+adb shell input text “hola” - Escribe texto
+
+============================== NOTIFICACIONES
+============================== adb shell appops set com.android.dialer
+POST_NOTIFICATION ignore - Bloquea notificaciones del dialer
+
+============================== MODO AVION ==============================
+adb shell settings put global airplane_mode_on 1 adb shell am broadcast
+-a android.intent.action.AIRPLANE_MODE - Activa modo avión
+
+============================== NOTAS ============================== -
+Algunos comandos dependen del fabricante - Requiere depuración USB
+activa - Coordenadas táctiles dependen de la resolución
+
+scrcpy --turn-screen-off --stay-awake -G
+

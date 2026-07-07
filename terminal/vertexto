@@ -1,0 +1,20 @@
+less
+Puedes desplazarte página por página,
+buscar texto y salir cuando termines.
+Controles: Espacio (avanzar), b (retroceder), /texto (buscar), q (salir).
+Ejemplo:
+less /var/log/syslog
+
+head
+head muestra las primeras líneas de un archivo.
+Por defecto muestra 10 líneas,
+aunque puede indicarse otra cantidad con -n.
+Ejemplo:
+head -n 20 archivo.txt
+
+tail
+tail muestra las últimas líneas de un archivo.
+La opción -f permite seguir un archivo en tiempo real,
+muy útil para monitorear registros (logs).
+Ejemplo:
+tail -f servidor.log

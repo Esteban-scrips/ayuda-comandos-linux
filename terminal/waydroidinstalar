@@ -1,0 +1,36 @@
+Instalación de Waydroid en Debian
+
+1.  Actualizar repositorios e instalar dependencias básicas:
+
+sudo apt update sudo apt install curl ca-certificates -y
+
+2.  Agregar el repositorio de Waydroid:
+
+curl -s https://repo.waydro.id | sudo bash
+
+3.  Instalar Waydroid:
+
+sudo apt update sudo apt install waydroid -y
+
+4.  Inicializar Waydroid:
+
+sudo waydroid init
+
+5.  Habilitar e iniciar el contenedor:
+
+sudo systemctl enable –now waydroid-container
+
+6.  Iniciar la interfaz Android:
+
+waydroid show-full-ui
+
+Opcional (inicio manual):
+
+sudo waydroid container start waydroid session start waydroid
+show-full-ui
+
+Verificar que la sesión sea Wayland:
+
+echo $XDG_SESSION_TYPE
+
+El resultado debe ser: wayland

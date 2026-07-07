@@ -1,0 +1,8 @@
+Redirección
+La redirección permite guardar la salida de un comando en un archivo.
+ > sobrescribe, >> agrega al final, 2> guarda errores y 2>&1 combina salida estándar y errores.
+
+Ejemplos:
+ls > lista.txt
+echo Hola >> lista.txt
+find / 2> errores.txt
