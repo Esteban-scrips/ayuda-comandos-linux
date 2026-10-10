@@ -1,0 +1,3 @@
+desactivar y re activar
+sudo rmmod psmouse
+sudo modprobe psmouse

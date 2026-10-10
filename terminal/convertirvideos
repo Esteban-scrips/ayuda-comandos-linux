@@ -1,0 +1,9 @@
+ffmpeg -i 'video.entrada' 'video.salida'
+
+secuencia de imagen a video
+
+ffmpeg -framerate 30  -i %04d.png -c:v libvpx-vp9 -pix_fmt yuva420p -auto-alt-ref 0 video.webm
+
+especificando el numero de inicio
+
+ffmpeg -framerate 30 -start_number 210 -i %04d.png -c:v libvpx-vp9 -pix_fmt yuva420p -auto-alt-ref 0 video.webm

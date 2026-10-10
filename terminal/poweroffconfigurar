@@ -1,0 +1,49 @@
+Permitir que un usuario apague y reinicie Debian sin contraseña
+
+1. Editar sudoers
+
+sudo apt update
+sudo apt install polkitd
+
+Como root, ejecutar:
+
+sudo nano /etc/polkit-1/rules.d/50-power.rules
+
+pon:
+
+polkit.addRule(function(action, subject) {
+    if (subject.user == "esteban") {
+        if (action.id == "org.freedesktop.login1.power-off" ||
+            action.id == "org.freedesktop.login1.reboot") {
+            return polkit.Result.YES;
+        }
+    }
+});
+
+Edita ~/.bashrc:
+
+nano ~/.bashrc
+
+Agrega al final:
+
+export PATH="$PATH:/usr/sbin:/sbin"
+
+Guarda y ejecuta:
+
+source ~/.bashrc
+
+Ahora:
+
+command -v reboot
+command -v poweroff
+command -v shutdown
+
+Debería mostrar:
+
+/usr/sbin/reboot
+/usr/sbin/poweroff
+/usr/sbin/shutdown
+
+
+poweroff
+reboot

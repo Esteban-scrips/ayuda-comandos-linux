@@ -1,0 +1,9 @@
+bluetoothctl
+power on
+discoverable on 
+scan on 
+"espera a direcion mac y copiala"
+pair "mac"
+connect "mac"
+exit 
+

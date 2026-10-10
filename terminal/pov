@@ -1,0 +1,26 @@
+renderizar povrai desde archivo
+	|archivo     |formato de comprecion
+povray +Iprueba.pov +Oprueba.png +W800 +H600
+				 |tamaño
+################################################
+povray prueba.ini
+		|archivo con los parametros para animacion
+
+ej: 
+
+Input_File_Name=prueba.pov
+Output_File_Type=N
+
+Initial_Frame=1
+Final_Frame=120
+
+Initial_Clock=0
+Final_Clock=1
+
+Cyclic_Animation=Off
+Pause_When_Done=Off
+
+
+convertir imagenes en video
+ffmpeg -framerate 30 -i prueba%03d.png -c:v libx264 -pix_fmt yuv420p animacion.mp4
+		|fps			|foto nombre+3cifras+png 					|nombre+.mp4

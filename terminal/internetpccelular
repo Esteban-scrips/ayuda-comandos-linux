@@ -1,0 +1,15 @@
+entrar en la carpeta
+~/gnirehtet-java
+y ejecutar
+./gnirehtet run
+parametros extras
+./gnirehtet stop
+./gnirehtet start
+
+sudo systemctl restart NetworkManager
+
+nmcli radio wifi off
+nmcli radio wifi on
+
+sudo ip link set wlxe0d362fc8bd4 down
+sudo ip link set wlxe0d362fc8bd4 up

@@ -1,0 +1,23 @@
+activar puerto wifi
+
+sudo ip link set wlxe0d362fc8bd4 up
+
+conexion red activar wifi
+nmtui
+
+activar wifi
+wifi
+
+listar wifi
+nmcli device wifi list
+
+conextar a wifi
+nmcli device wifi connect "NOMBRE_WIFI" password "CONTRASEÑA"
+
+reinicio red
+nmcli radio wifi off
+nmcli radio wifi on
+
+reiniciar 
+sudo ip link set wlxe0d362fc8bd4 up
+sudo ip link set wlxe0d362fc8bd4 down

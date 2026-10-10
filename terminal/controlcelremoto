@@ -24,4 +24,7 @@ adb shell netstat -tln | grep 5555
 
 escritorio remoto pantalla apagada no hibernar:
 scrcpy --turn-screen-off --stay-awake
- 
+scrcpy -m 800 --max-fps 30 --turn-screen-off --stay-awake
+
+selecionar dispositivo especifico
+scrcpy --tcpip='ip':5555

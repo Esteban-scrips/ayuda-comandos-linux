@@ -1,7 +1,7 @@
-ADB COMANDOS UTILES (CON EXPLICACION)
 
 ============================== CONEXION Y DISPOSITIVOS
-============================== adb devices - Lista dispositivos
+============================== 
+adb devices - Lista dispositivos
 conectados
 
 adb connect IP:PUERTO - Conecta por red (ej: 192.168.0.5:5555)
@@ -15,7 +15,8 @@ adb disconnect - Desconecta dispositivos por red
 adb kill-server adb start-server - Reinicia el servicio ADB
 
 ============================== INSTALACION DE APPS
-============================== adb install app.apk - Instala una app
+============================== 
+adb install app.apk - Instala una app
 adb install --streaming "ubicacion de app" - instalacion desde pc
 
 adb install -r app.apk - Reinstala sin borrar datos
@@ -25,7 +26,8 @@ adb uninstall com.paquete.app - Desinstala una app
 adb shell pm list packages - Lista paquetes instalados
 
 ============================== ABRIR Y LISTAR APLICACIONES
-============================== adb shell monkey -p com.paquete.app -c
+============================== 
+adb shell monkey -p com.paquete.app -c
 android.intent.category.LAUNCHER 1 - Abre una aplicación
 
 adb shell am start -n com.paquete/.MainActivity - Abre actividad
@@ -43,10 +45,15 @@ adb push archivo /sdcard/ - Copia archivo al dispositivo
 adb pull /sdcard/archivo - Descarga archivo del dispositivo
 
 ============================== SHELL Y SISTEMA
-============================== adb shell - Abre consola en Android
+============================== 
+adb shell - Abre consola en Android
+adb reboot
+adb reboot bootloader
+adb reboot recovery 
+- Reinicios en distintos modos
 
-adb reboot adb reboot bootloader adb reboot recovery - Reinicios en
-distintos modos
+adb shell reboot -p - apagar
+
 adb -s 192.168.0.222:5555 shell - shell en remoto de un dispositivo
 
 adb shell getprop - Propiedades del sistema
@@ -60,29 +67,33 @@ adb shell dumpsys battery | grep level - Nivel de batería
 
 adb shell dumpsys battery | grep status - Estado (charging, discharging,
 full)
-
+adb shell dumpsys battery set level 50 - porcentaje de bateria
 ============================== LOGS Y DEBUG
-============================== adb logcat - Logs en tiempo real
+============================== 
+adb logcat - Logs en tiempo real
 
 adb logcat -c - Limpia logs
 
 adb bugreport - Reporte completo del sistema
 
 ============================== MULTIPLES DISPOSITIVOS
-============================== adb -s SERIAL shell - Ejecuta comando en
+============================== 
+adb -s SERIAL shell - Ejecuta comando en
 dispositivo específico
 
 adb -s SERIAL install app.apk - Instala en un dispositivo específico
 
 ============================== CONTROL DE PANTALLA Y BRILLO
-============================== adb shell settings put system
+============================== 
+adb shell settings put system
 screen_brightness_mode 0 - Desactiva brillo automático
 
 adb shell settings put system screen_brightness 50 - Ajusta brillo
 (0-255)
 
 ============================== EMULACION DE BOTONES (KEYEVENT)
-============================== adb shell input keyevent 26 - Botón power
+============================== 
+adb shell input keyevent 26 - Botón power
 
 adb shell input keyevent 3 - HOME
 
@@ -94,6 +105,8 @@ adb shell input keyevent 24 - Volumen +
 
 adb shell input keyevent 25 - Volumen -
 
+adb shell input keyevent 26 -boton encendido-
+
 ============================== EMULACION TACTIL
 ============================== adb shell input tap X Y - Toque en
 pantalla
@@ -102,17 +115,26 @@ adb shell input swipe X1 Y1 X2 Y2 - Deslizamiento
 
 adb shell input text “hola” - Escribe texto
 
-============================== NOTIFICACIONES
-============================== adb shell appops set com.android.dialer
-POST_NOTIFICATION ignore - Bloquea notificaciones del dialer
+resolucion
+adb shell wm size 600x400
+adb shell wm density 120
 
-============================== MODO AVION ==============================
-adb shell settings put global airplane_mode_on 1 adb shell am broadcast
--a android.intent.action.AIRPLANE_MODE - Activa modo avión
+consultar resolucion
+adb shell wm size
+adb shell wm density
 
-============================== NOTAS ============================== -
-Algunos comandos dependen del fabricante - Requiere depuración USB
-activa - Coordenadas táctiles dependen de la resolución
+resetiar resolucion
+adb shell wm size reset
+adb shell wm density reset
 
-scrcpy --turn-screen-off --stay-awake -G
+conexion pc
 
+adb devices "mostrar dispositivo"
+
+adb -s ZY2234ABC shell "selecionar dispositivo para comandos"
+
+scrcpy --turn-screen-off --stay-awakee
+ scrcpy -m 800 --max-fps 30 --turn-screen-off --stay-awake
+
+seleccionar un dispositivo especifico
+scrcpy -s ZY2234ABC

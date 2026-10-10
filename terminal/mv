@@ -1,0 +1,77 @@
+crear disco virtual
+
+qemu-img create -f qcow2 debian13.qcow2 8G
+
+otro formato
+
+qemu-img create -f vhdx PC01.vhdx 64G
+qemu-img info PC01.vhdx
+
+cambiar de formato
+
+qemu-img convert -f raw -O vhdx sistema.img sistema.vhdx
+
+convertir unidad montada a iso
+genisoimage -o disco.iso /mnt
+
+convertir disco virtual a unidad usb
+
+-drive file=win10.qcow2,format=qcow2,if=none,id=usbdisk \
+-device usb-storage,drive=usbdisk \
+
+
+#################################################
+iniciar maquina con iso y disco virtual
+
+qemu-system-x86_64 \
+  -enable-kvm \
+  -m 1024 \
+  -drive file=debian13.qcow2,format=qcow2 \
+  -device virtio-vga,xres=600,yres=400 \
+  -display gtk \
+  -netdev user,id=n1,hostfwd=tcp::2222-:22 \
+  -device virtio-net-pci,netdev=n1
+################################################
+parametros
+
+  -enable-kvm \"virtualizacion activa"
+  -cpu host \"cpu virtual = cpu host"
+  -smp 2 \ "nucleos asignados de cpu"
+  -device virtio-vga,xres=600,yres=400/ "resolucion pantalla"
+  -m 1024 \ "ram asignada"
+  -drive file=PC01.vhdx,format=vhdx \"disco virtual"
+  -cdrom Win11.iso \"iso instalacion"
+  -drive file=1.img,format=raw,if=ide /"montar imagen.img"
+  -drive file=1.img,media=cdrom,readonly=on /"multiples cd"
+  -boot d "unidad de booteo"
+
+a → disquete (floppy)
+c → disco duro (VHDX, QCOW2, etc.)
+d → CD/DVD (la ISO)
+n → arranque por red (PXE)
+
+
+################################################################
+configuracion reducida
+
+qemu-system-x86_64  -cdrom ReactOS-live.iso  -enable-kvm -device virtio-vga,xres=600,yres=400  -m 1024 -boot menu=on
+################################################################
+iniciar desde unidad real conectada y no montada
+
+qemu-system-x86_64  -cdrom  -enable-kvm -device virtio-vga,xres=600,yres=400 -drive file=/dev/sde,format=raw,if=virtio -m 1024 -boot menu=on
+
+################################################################
+usar disco virtual como disco usb
+
+qemu-system-x86_64   -enable-kvm -m 1024  -usb   -drive file=PC01.qcow2,format=qcow2,if=ide,index=0   -drive file=win10.qcow2,format=qcow2,if=none,id=usbdisk   -device usb-storage,drive=usbdisk   -device virtio-vga,xres=600,yres=400   -display gtk
+
+
+##############################################################
+montar unidad virtual
+
+sudo modprobe nbd max_part=8
+sudo qemu-nbd --connect=/dev/nbd0 '/mnt/raid0/linux/debian13.qcow2' 
+sudo qemu-nbd --disconnect /dev/nbd0
+
+
+

@@ -1,1 +1,6 @@
- fc-cache -f -v ~/.local/share/fonts
+actualizar
+ fc-cache f -v ~/.local/share/fonts
+lugar de fuentes
+ /usr/share/fonts/truetype/
+buscar
+ fc-list : family | grep -i "arial"
